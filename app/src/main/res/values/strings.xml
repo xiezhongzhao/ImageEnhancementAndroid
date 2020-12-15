@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ImageEnhancementAndroid</string>
+    <string name="time">The algorithm costs: 0.000 s</string>
+</resources>

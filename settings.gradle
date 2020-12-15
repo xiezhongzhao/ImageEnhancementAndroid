@@ -1,0 +1,3 @@
+rootProject.name='ImageEnhancementAndroid'
+include ':app'
+include ':openCVLibrary349'
