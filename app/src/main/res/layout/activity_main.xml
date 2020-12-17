@@ -5,7 +5,8 @@ android:id="@+id/activity_java"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".MainActivity"
-android:orientation="vertical">
+android:orientation="vertical"
+android:background="@color/ivory">
 
     <Button
         android:id="@+id/select_btn"
@@ -54,7 +55,7 @@ android:orientation="vertical">
         android:layout_height="517dp"
         android:layout_x="7dp"
         android:layout_y="84dp"
-        android:src="@drawable/ic_launcher_background" />
+         />
 
 </AbsoluteLayout>
 

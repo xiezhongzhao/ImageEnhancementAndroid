@@ -75,11 +75,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button seceBtn = (Button)findViewById(R.id.sece_btn);
+        seceBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                seceEnhance();
+            }
+        });
+
         Button baiduBtn = (Button)findViewById(R.id.baidu_btn);
         baiduBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                baiduEnhance();
             }
         });
 
@@ -88,12 +96,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void costTime(long startTime, long endTime){
-        float usedTime = (float) ((endTime-startTime)/1000.0);
+        float usedTime = (float) ((endTime-startTime));
         String str = Float.toString(usedTime);
-        textTimeView.setText("The algorithm costs: " + str + " s");
+        textTimeView.setText("The algorithm costs: " + str + " ms");
     }
 
     private void convertGray(){
+
         Mat src = new Mat();
         Mat temp = new Mat();
         Mat dst = new Mat();
@@ -109,6 +118,55 @@ public class MainActivity extends AppCompatActivity {
 
         Utils.matToBitmap(dst, selectbp);
         myImageView.setImageBitmap(selectbp);
+    }
+
+    private void seceEnhance(){
+
+        int w = selectbp.getWidth();
+        int h = selectbp.getHeight();
+        Log.d("width：", String.valueOf(w));
+        Log.d("height：", String.valueOf(h));
+
+        int[] pix = new int[w * h];
+        selectbp.getPixels(pix, 0, w, 0, 0, w, h);
+
+        //调用native函数，图像对比度增强
+        int[] resultInt = seceFromJNI(pix, w, h);
+        String seceTime = timeFromJNI();
+        textTimeView.setText("The algorithm costs: " + seceTime + " ms");
+
+        Bitmap resultImg = Bitmap.createBitmap(w, h, Bitmap.Config.RGB_565);
+        Log.d("width：", String.valueOf(resultImg.getWidth()));
+        Log.d("height：", String.valueOf(resultImg.getHeight()));
+        resultImg.setPixels(resultInt, 0, w, 0, 0,w, h);
+        myImageView.setDrawingCacheEnabled(true);
+        myImageView.setImageBitmap(resultImg);
+
+//        //从imageview上获取bitmap图片
+//        myImageView.setDrawingCacheEnabled(true);
+//        Bitmap bitmap = myImageView.getDrawingCache();
+//
+//        int w=bitmap.getWidth();
+//        int h=bitmap.getHeight();
+//        int[] pix = new int[w * h];
+//        bitmap.getPixels(pix, 0, w, 0, 0, w, h);
+//
+//        //调用native函数，模糊图像
+//        int[] resultInt = seceFromJNI(pix, w, h);
+//        String seceTime = timeFromJNI();
+////        String seceTime = timeFromJNI();
+//        textTimeView.setText("The algorithm costs: " + seceTime + " ms");
+//
+//        Bitmap resultImg = Bitmap.createBitmap(w, h, Bitmap.Config.RGB_565);
+//        resultImg.setPixels(resultInt, 0, w, 0, 0,w, h);
+//        myImageView.setDrawingCacheEnabled(false);
+//
+//        myImageView.setImageBitmap(resultImg);
+    }
+
+    private void baiduEnhance(){
+
+
     }
 
     @Override
@@ -155,6 +213,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public native String stringFromJNI();
 
+    public native int[] seceFromJNI(int[] rawImg, int w, int h);
+
+    public native String timeFromJNI();
 }
 
 

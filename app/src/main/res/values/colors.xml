@@ -3,4 +3,19 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="white">#FFFFFF</color><!--白色 -->
+
+    <color name="ivory">#FFFFF0</color><!--象牙色 -->
+    <color name="pink">#FFC0CB</color><!--粉红色 -->
+
+    <color name="lightpink">#FFB6C1</color><!--亮粉红色 -->
+
+    <color name="orange">#FFA500</color><!--橙色 -->
+
+    <color name="lightsalmon">#FFA07A</color><!--亮肉色 -->
+
+    <color name="darkorange">#FF8C00</color><!--暗桔黄色 -->
+
+    <color name="coral">#FF7F50</color><!--珊瑚色 -->
 </resources>
