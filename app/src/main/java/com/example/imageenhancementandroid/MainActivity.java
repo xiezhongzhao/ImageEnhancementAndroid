@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         textTimeView = (TextView)findViewById(R.id.time_label);
-//        textTime.setText(R.string.time);
+        textTimeView.setText(R.string.time);
     }
 
     private void costTime(long startTime, long endTime){
